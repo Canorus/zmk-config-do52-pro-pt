@@ -13,6 +13,7 @@ include:
     shield: yk_do52pro_right
     snippet: studio-rpc-usb-uart
     cmake-args: -DCONFIG_ZMK_STUDIO=y
+    snippet: zmk-usb-logging
   # Settings Reset firmware
   # This will build a firmware that can wipe all settings from your
   # controller. It's useful when you have bluetooth issues or when your split
