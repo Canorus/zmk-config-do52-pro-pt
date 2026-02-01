@@ -104,8 +104,7 @@
         lshift: magic_left_shift {
             compatible = "zmk,behavior-hold-tap";
             flavor = "balanced";
-            tapping-term-ms = <TAPPING_TERM_MS>;
-            quick-tap-ms = <QUICK_TAP_MS>;                // repeat on tap-into-hold
+            tapping-term-ms = <TAPPING_TERM_MS>;                // repeat on tap-into-hold
             require-prior-idle-ms = <15>;
             #binding-cells = <2>;
             bindings = <&kp>, <&none>;
