@@ -77,65 +77,29 @@
 #define U_TOG_TP_SET &none
 
 #endif  // HAS_MOUSE_TP
-#define QUICK_TAP_MS 250
-#define TAPPING_TERM_MS 150
+
+#define TAPPING_TERM_MS 200
 
 // Disable line-wrap in your editor to see a "visualization" of the key layouts
 
-&lt { flavor = "tap-unless-interrupted"; };
+&lt {
+    flavor = "tap-unless-interrupted";
+    hold-while-undecided;
+    hold-while-undecided-linger;
+};
 
-&mt { flavor = "tap-unless-interrupted"; };
+&mt {
+    flavor = "tap-unless-interrupted";
+    hold-while-undecided-linger;
+    hold-while-undecided;
+};
 
-&soft_off { hold-time-ms = <5>; };
+&soft_off { hold-time-ms = <5000>; };
 
 / {
     behaviors {
         /* left-hand HRMs */
-
-        hml: homerow_mods_left {
-            compatible = "zmk,behavior-hold-tap";
-            flavor = "balanced";
-            tapping-term-ms = <TAPPING_TERM_MS>;
-            quick-tap-ms = <QUICK_TAP_MS>;                // repeat on tap-into-hold
-            require-prior-idle-ms = <15>;
-            #binding-cells = <2>;
-            bindings = <&kp>, <&kp>;
-
-            hold-trigger-on-release;             // delay positional check until key-release
-        };
-
         /* right-hand HRMs */
-
-        hmr: homerow_mods_right {
-            compatible = "zmk,behavior-hold-tap";
-            flavor = "balanced";
-            tapping-term-ms = <TAPPING_TERM_MS>;
-            quick-tap-ms = <QUICK_TAP_MS>;                // repeat on tap-into-hold
-            require-prior-idle-ms = <15>;
-            #binding-cells = <2>;
-            bindings = <&kp>, <&kp>;
-
-            hold-trigger-on-release;             // delay positional check until key-release
-        };
-
-        tl: thumb_layer {
-            compatible = "zmk,behavior-hold-tap";
-            flavor = "balanced";
-            tapping-term-ms = <TAPPING_TERM_MS>;
-            quick-tap-ms = <QUICK_TAP_MS>;                // repeat on tap-into-hold
-            require-prior-idle-ms = <15>;
-            #binding-cells = <2>;
-            bindings = <&mo>, <&kp>;
-
-            hold-trigger-on-release;             // delay positional check until key-release
-        };
-
-        tdcaps: tap_dance_capslock {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <TAPPING_TERM_MS>;
-            bindings = <&kp LPAR>, <&kp CAPSLOCK>;
-        };
 
         lshift: magic_left_shift {
             compatible = "zmk,behavior-hold-tap";
@@ -144,7 +108,7 @@
             quick-tap-ms = <QUICK_TAP_MS>;                // repeat on tap-into-hold
             require-prior-idle-ms = <15>;
             #binding-cells = <2>;
-            bindings = <&kp>, <&tdcaps>;
+            bindings = <&kp>, <&none>;
 
             hold-trigger-on-release;             // delay positional check until key-release
         };
@@ -165,28 +129,28 @@
         Base_layer {
             display-name = "Base";
             bindings = <
-&kp ESC  &kp N1  &kp N2  &kp N3  &kp N4  &kp N5  &kp TAB  &kp Q  &kp W  &kp E  &kp R  &kp T  &kp NON_US_BACKSLASH  &kp A  &kp S  &kp D  &kp F  &kp G  &lshift LSHIFT 0  &mt LEFT_SHIFT Z  &kp X  &kp C  &kp V  &kp B  &kp LCTRL  &kp LALT  &kp LEFT_GUI  &lt 2 KP_ENTER  &kp NUMBER_6  &kp N7  &kp N8  &kp N9  &kp N0  &kp MINUS  &kp Y  &kp U  &kp I  &kp O  &kp P  &kp BACKSPACE  &kp H  &kp J  &kp K  &kp L  &mt RSHIFT SEMI  &tl SCROLL_TP SQT  &kp N  &kp M  &kp COMMA  &kp PERIOD  &kp SLASH  &hmr RSHFT RPAR  &lt 1 SPACE  &kp RALT  &mo 3  &mo 4  &msc SCRL_LEFT  &msc SCRL_DOWN  &kp ENTER  &msc SCRL_UP  &msc SCRL_RIGHT  &kp LEFT  &kp DOWN  &kp SPACE  &kp UP_ARROW  &kp RIGHT
+&kp ESC  &kp N1  &kp N2  &kp N3  &kp N4  &kp N5  &kp TAB  &kp Q  &kp W  &kp E  &kp R  &kp T  &kp BACKSLASH  &kp A  &kp S  &kp D  &kp F  &kp G  &lshift LSHIFT 0  &mt LEFT_SHIFT Z  &kp X  &kp C  &kp V  &kp B  &kp LCTRL  &kp LCTRL  &kp LALT  &mt LEFT_GUI KP_ENTER  &kp NUMBER_6  &kp N7  &kp N8  &kp N9  &kp N0  &kp MINUS  &kp Y  &kp U  &kp I  &kp O  &kp P  &kp BACKSPACE  &kp H  &kp J  &kp K  &kp L  &mt RSHIFT SEMI  &mt RSHFT SQT  &kp N  &kp M  &kp COMMA  &kp PERIOD  &kp SLASH  &mt RSHFT RPAR  &lt 1 SPACE  &kp RALT  &mo 2  &mo 3  &msc SCRL_LEFT  &msc SCRL_DOWN  &kp ENTER  &msc SCRL_UP  &msc SCRL_RIGHT  &kp LEFT  &kp DOWN  &kp SPACE  &kp UP_ARROW  &kp RIGHT
             >;
+
+            label = "BAS";
         };
+
         spc_layer {
             display-name = "nav";
             bindings = <
-&trans  &kp F1  &kp F2  &kp F3  &kp F4  &kp F5  &trans  &kp NUMBER_1  &kp N2  &kp N3  &kp N4  &kp N5  &trans  &kp MINUS  &kp LEFT_PARENTHESIS  &kp QUESTION  &kp RPAR  &trans  &trans  &kp C_PAUSE  &kp C_VOL_DN  &kp C_VOLUME_UP  &kp C_MUTE  &trans  &trans  &trans  &trans  &trans  &kp F6  &kp F7  &kp F8  &kp F9  &kp F10  &kp F11  &kp N6  &kp N7  &kp N8  &kp N9  &kp N0  &kp BSPC  &kp LEFT  &kp DOWN  &kp UP_ARROW  &kp RIGHT  &mt RSHFT SEMICOLON  &kp SQT  &kp LBKT  &kp RBKT  &kp BSLH  &kp GRAVE  &kp SQT  &kp BSLH  &trans  &trans  &trans  &trans  &kp LEFT  &kp DOWN  &kp PSCRN  &kp UP  &kp RIGHT  &kp HOME  &kp PG_DN  &kp INS  &kp PG_UP  &kp END
+&trans  &kp F1  &kp F2  &kp F3  &kp F4  &kp F5  &trans  &kp NUMBER_1  &kp N2  &kp N3  &kp N4  &kp N5  &trans  &kp MINUS  &kp LEFT_PARENTHESIS  &kp QUESTION  &kp RPAR  &trans  &trans  &kp KP_PLUS  &kp C_VOL_DN  &kp C_VOLUME_UP  &kp C_MUTE  &trans  &trans  &trans  &trans  &trans  &kp F6  &kp F7  &kp F8  &kp F9  &kp F10  &kp F11  &kp N6  &kp N7  &kp N8  &kp N9  &kp N0  &kp BSPC  &kp LEFT  &kp DOWN  &kp UP_ARROW  &kp RIGHT  &mt RSHFT SEMICOLON  &kp SQT  &kp LBKT  &kp RBKT  &kp BSLH  &kp GRAVE  &kp SQT  &kp BSLH  &trans  &trans  &trans  &trans  &kp LEFT  &kp DOWN  &kp PSCRN  &kp UP  &kp RIGHT  &kp HOME  &kp PG_DN  &kp INS  &kp PG_UP  &kp END
             >;
-        };
 
-        return_layer {
-            display-name = "return";
-            bindings = <
-&kp MINUS  &kp N9  &kp N8  &kp N7  &kp N6  &kp N0  &tl SCROLL_TP EQUAL  &tl MOUSE P  &tl SCROLL_TP O  &kp I  &kp U  &kp Y  &tl SCROLL_TP SQT  &kp C_MUTE  &kp C_VOL_DN  &kp C_VOLUME_UP  &hmr RCTRL J  &kp H  &hmr RSHFT RPAR  &kp C_PAUSE  &kp C_PREV  &kp C_NEXT  &trans  &studio_unlock  &kp PAUSE_BREAK  &kp PRINTSCREEN  &tl CONFIG RET  &trans  &kp N5  &kp N4  &kp N3  &kp N2  &kp N1  &kp EQUAL  &kp T  &kp R  &kp E  &hml RALT W  &kp Q  &kp BSLH  &kp G  &hml LCTRL F  &hml LCTRL D  &hml LSHIFT S  &hml LSHIFT A  &kp ESC  &tl CONFIG B  &hml LALT V  &hml RALT C  &hml LMETA X  &hml LMETA Z  &lshift LSHIFT 0  &tl SYMBOL BSPC  &tl CONFIG SPACE  &kp DEL  &kp INS  &kp HOME  &kp PG_DN  &kp INS  &kp PG_UP  &kp END  &kp LEFT  &kp DOWN  &kp PSCRN  &kp UP  &kp RIGHT
-            >;
+            label = "SPC";
         };
 
         mod_layer {
             display-name = "Symbol";
             bindings = <
-&bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &kp PLUS  &kp C_BRIGHTNESS_DEC  &kp C_BRIGHTNESS_INC  &kp LPAR  &kp RPAR  &out OUT_USB  &kp DQT  &kp CARET  &kp PERCENT  &kp LBRC  &kp RBRC  &out OUT_BLE  &kp UNDER  &kp HASH  &kp GRAVE  &kp LBKT  &kp RBKT  &studio_unlock  &trans  &trans  &trans  &trans  &soft_off  &kp F8  &kp F9  &kp F10  &kp F11  &kp F12  &kp AT  &kp TILDE  &kp CARET  &kp AMPERSAND  &kp STAR  &kp PLUS  &kp DOLLAR  &kp LBRC  &kp RBRC  &kp PERCENT  &kp COLON  &kp DQT  &kp EXCL  &kp LBKT  &kp RBKT  &kp GRAVE  &kp HASH  &kp UNDER  &trans  &trans  &none  &trans  &kp C_REWIND  &kp C_VOL_DN  &trans  &kp C_VOL_UP  &kp C_FAST_FORWARD  &kp C_PREV  &kp C_STOP  &trans  &kp C_PLAY_PAUSE  &kp C_NEXT
+&bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &kp PLUS  &kp C_BRIGHTNESS_DEC  &kp C_BRIGHTNESS_INC  &kp LPAR  &kp RPAR  &out OUT_USB  &kp DQT  &kp CARET  &kp PERCENT  &kp LBRC  &kp RBRC  &out OUT_BLE  &kp UNDER  &kp C_MUTE  &kp C_VOL_DN  &kp C_VOLUME_UP  &kp RBKT  &studio_unlock  &trans  &trans  &trans  &trans  &soft_off  &kp F8  &kp F9  &kp F10  &kp F11  &kp F12  &kp AT  &kp TILDE  &kp CARET  &kp AMPERSAND  &kp STAR  &kp PLUS  &kp DOLLAR  &kp LBRC  &kp RBRC  &kp PERCENT  &kp COLON  &kp DQT  &kp EXCL  &kp LBKT  &kp RBKT  &kp GRAVE  &kp HASH  &kp UNDER  &trans  &trans  &none  &trans  &kp C_REWIND  &kp C_VOL_DN  &trans  &kp C_VOL_UP  &kp C_FAST_FORWARD  &kp C_PREV  &kp C_STOP  &trans  &kp C_PLAY_PAUSE  &kp C_NEXT
             >;
+
+            label = "MOD";
         };
 
         Config_layer {
@@ -199,7 +163,7 @@
         Mouse_layer {
             display-name = "Mouse";
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &mo SCROLL_TP  &none  &mo SCROLL_TP  &trans  &trans  &mkp MCLK  &mo SCROLL_TP  &trans  &mo SCROLL_TP  &trans  &trans  &mkp MCLK  &mo SCROLL_TP  &none  &mo SCROLL_TP  &mkp LCLK  &mkp RCLK  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &none  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
             >;
         };
 
@@ -209,5 +173,12 @@
 &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &none  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
             >;
         };
+
+        layer_6 {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+            >;
+        };
     };
 };
+
