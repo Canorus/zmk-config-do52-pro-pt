@@ -77,21 +77,18 @@
 #define U_TOG_TP_SET &none
 
 #endif  // HAS_MOUSE_TP
+
 #define TAPPING_TERM_MS 200
 
 // Disable line-wrap in your editor to see a "visualization" of the key layouts
 
 &lt {
     flavor = "tap-unless-interrupted";
-    hold-while-undecided;
-    hold-while-undecided-linger;
     tapping-term-ms = <250>;
 };
 
 &mt {
     flavor = "tap-unless-interrupted";
-    hold-while-undecided-linger;
-    hold-while-undecided;
     tapping-term-ms = <250>;
 };
 
