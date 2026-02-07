@@ -8,10 +8,22 @@ manifest:
     # See https://docs.zephyrproject.org/3.2.0/develop/west/manifest.html#projects
     - name: urob
       url-base: https://github.com/urob
+    - name: infused-kim
+      url-base: https://github.com/infused-kim
+    #- name: filippor
+    #  url-base: https://github.com/filippor
   projects:
     - name: zmk
       remote: zmkfirmware
       import: app/west.yml
+    # Module for PS/2 mouse & TP driver
+    #- name: kb_zmk_ps2_mouse_trackpoint_driver-zmk_config
+    #  remote: filippor
+    #  revision: main
+    # Add the PS/2 driver module
+    - name: kb_zmk_ps2_mouse_trackpoint_driver
+      remote: infused-kim
+      revision: main
     - name: zmk-helpers
       remote: urob
       revision: v0.3 # Should match ZMK release.
