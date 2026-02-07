@@ -41,6 +41,17 @@
             ;
 
     };
-
+    
+	mouse_ps2_input_listener: mouse_ps2_input_listener {
+        compatible = "zmk,input-listener-ps2";
+        device = <&mouse_ps2>;
+        
+        // TrackPoint settings
+        tp-sensitivity = <135>;
+        tp-neg-inertia = <6>;
+        
+        // Optional: auto-layer toggle on mouse movement
+        // layer-toggle = <3>;
+    };
     // TODO: per-key RGB node(s)?
 };
