@@ -83,15 +83,13 @@
 // Disable line-wrap in your editor to see a "visualization" of the key layouts
 
 &lt {
-	flavor = "tap-preferred";
-    //flavor = "tap-unless-interrupted";
+    flavor = "tap-unless-interrupted";
     //flavor = "balanced";
 	tapping-term-ms = <250>;
 };
 
 &mt {
-	flavor = "tap-preferred";
-    //flavor = "tap-unless-interrupted";
+    flavor = "tap-unless-interrupted";
     //flavor = "balanced";
     tapping-term-ms = <250>;
 };
@@ -121,7 +119,7 @@
 
             #binding-cells = <2>;
             tapping-term-ms = <200>;
-            flavor = "tap-preferred";
+            flavor = "tap-unless-interrupted";
     		//flavor = "balanced";
         };
     };
